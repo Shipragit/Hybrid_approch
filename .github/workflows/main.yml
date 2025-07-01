@@ -3,7 +3,6 @@ name: ServiceNow GitHub Actions CI/CD workflow
 
 on:
   push:
-  pull_request:
     branches:
       -development
       - main
