@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_dictionary action="INSERT_OR_UPDATE" element="year_of_manufacturing" table="x_fobr_car_details_car_name">
+        <active>true</active>
+        <array>false</array>
+        <attributes/>
+        <audit>false</audit>
+        <calculation><![CDATA[(function calculatedFieldValue(current) {
+
+	// Add your code here
+	return '';  // return the calculated value
+
+})(current);]]></calculation>
+        <choice/>
+        <choice_field/>
+        <choice_table/>
+        <column_label>Year Of Manufacturing</column_label>
+        <comments/>
+        <create_roles/>
+        <default_value/>
+        <defaultsort/>
+        <delete_roles/>
+        <dependent/>
+        <dependent_on_field/>
+        <display>false</display>
+        <dynamic_creation>false</dynamic_creation>
+        <dynamic_creation_script/>
+        <dynamic_default_value/>
+        <dynamic_ref_qual/>
+        <element>year_of_manufacturing</element>
+        <element_reference>false</element_reference>
+        <foreign_database/>
+        <formula/>
+        <function_definition/>
+        <function_field>false</function_field>
+        <internal_type display_value="Integer">integer</internal_type>
+        <mandatory>false</mandatory>
+        <max_length>10</max_length>
+        <name>x_fobr_car_details_car_name</name>
+        <next_element/>
+        <primary>false</primary>
+        <read_only>false</read_only>
+        <read_roles/>
+        <reference/>
+        <reference_cascade_rule/>
+        <reference_floats>false</reference_floats>
+        <reference_key/>
+        <reference_qual/>
+        <reference_qual_condition/>
+        <reference_type/>
+        <spell_check>false</spell_check>
+        <staged>false</staged>
+        <sys_class_name>sys_dictionary</sys_class_name>
+        <sys_created_by>samarth.vijaykumar@brightspeed.com</sys_created_by>
+        <sys_created_on>2025-07-01 06:03:00</sys_created_on>
+        <sys_id>613d21141ba6e2103e6ccae2604bcbda</sys_id>
+        <sys_name>Year Of Manufacturing</sys_name>
+        <sys_package display_value="Car_Details" source="x_fobr_car_details">656cad501ba6e2103e6ccae2604bcb7f</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Car_Details">656cad501ba6e2103e6ccae2604bcb7f</sys_scope>
+        <sys_update_name>sys_dictionary_x_fobr_car_details_car_name_year_of_manufacturing</sys_update_name>
+        <sys_updated_by>samarth.vijaykumar@brightspeed.com</sys_updated_by>
+        <sys_updated_on>2025-07-01 06:03:00</sys_updated_on>
+        <table_reference>false</table_reference>
+        <text_index>false</text_index>
+        <unique>false</unique>
+        <use_dependent_field>false</use_dependent_field>
+        <use_dynamic_default>false</use_dynamic_default>
+        <use_reference_qualifier>simple</use_reference_qualifier>
+        <virtual>false</virtual>
+        <virtual_type>script</virtual_type>
+        <widget/>
+        <write_roles/>
+        <xml_view>false</xml_view>
+    </sys_dictionary>
+</record_update>
