@@ -1,0 +1,66 @@
+
+name: ServiceNow GitHub Actions CI/CD workflow
+
+on:
+  push:
+  pull_request:
+    branches:
+      -development
+      - main
+  workflow_dispatch:
+
+
+jobs:
+  Git-checkout:
+    name: Git-checkout
+    runs-on: ubuntu-latest
+    steps:
+      - name: ServiceNow CI/CD Git-checkout Stage
+        run: echo "Pulling latest code from GitHub"
+
+  build:
+    needs: Git-checkout
+    if: ${{ github.event.inputs.triggerRollback != 'true' && github.event.inputs.runATF != 'true' }}
+    name: Publish from Dev
+    runs-on: ubuntu-latest
+    steps:
+      - name: ServiceNow CI/CD Apply Changes
+        uses: ServiceNow/sncicd-apply-changes@2.0.0
+        env:
+          nowUsername: ${{ secrets.NOW_USERNAME1 }}
+          nowPassword: ${{ secrets.NOW_PASSWORD1 }}
+          nowSourceInstance: ${{ secrets.NOW_SOURCE_INSTANCE }}
+          appSysID: ${{ secrets.APP_SYS_ID }}
+
+      - name: ServiceNow CI/CD Publish App
+        id: publish_app
+        uses: ServiceNow/sncicd-publish-app@2.0.1
+        with:
+          versionTemplate: 1.1
+          versionFormat: template
+        env:
+          nowUsername: ${{ secrets.NOW_USERNAME1 }}
+          nowPassword: ${{ secrets.NOW_PASSWORD1 }}
+          nowSourceInstance: ${{ secrets.NOW_SOURCE_INSTANCE }}
+          appSysID: ${{ secrets.APP_SYS_ID }}
+    
+    outputs:
+      publishversion: ${{ steps.publish_app.outputs.newVersion }}
+      
+
+  deployprod:
+    needs: build
+    if: ${{ github.ref == 'refs/heads/main' && always() }}
+    name: Deploy to Prod
+    runs-on: ubuntu-latest
+    steps:
+      - name: ServiceNow CI/CD Install App
+        id: install_app_prod
+        uses: ServiceNow/sncicd-install-app@2.0.0
+        with:
+          version: ${{ needs.build.outputs.publishversion }}
+        env:
+          nowUsername: ${{ secrets.NOW_USERNAME2 }}
+          nowPassword: ${{ secrets.NOW_PASSWORD2 }}
+          nowInstallInstance: ${{ secrets.NOW_TARGET_INSTANCE }}
+          appSysID: ${{ secrets.APP_SYS_ID }} 
